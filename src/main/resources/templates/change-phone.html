@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Change Phone Number</title></head>
+<body>
+<h2>Change Phone Number</h2>
+
+<div th:if="${error}" style="color: red;"><p th:text="${error}"></p></div>
+<div th:if="${message}" style="color: green;"><p th:text="${message}"></p></div>
+<form th:action="@{/verify-phone-logged}" method="post" th:object="${phoneRequest}">
+    <label for="phone">New Phone Number:</label>
+    <input type="text" id="phone" th:field="*{phoneNumber}" required /><br><br>
+    <button type="submit">Send Verification Code</button>
+</form>
+
+<a th:href="@{/profile}">Back</a>
+</body>
+</html>

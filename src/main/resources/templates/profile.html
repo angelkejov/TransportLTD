@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User Profile</title>
+</head>
+<body>
+<h1>User Profile</h1>
+
+<a th:href="@{/}">
+    <button>🏠 Back to Main Page</button>
+</a>
+
+<p th:if="${error}" style="color: red;" th:text="${error}"></p>
+
+<p><strong>Username:</strong> <span th:text="${username}"></span></p>
+<a th:href="@{/edit-username}">
+    <button>Edit Username</button>
+</a>
+<p th:if="${message}" th:text="${message}" style="color: green;"></p>
+<p><strong>Email:</strong> <span th:text="${email}"></span></p>
+<a th:href="@{/edit-email}">
+    <button>Edit Email</button>
+</a>
+<div th:if="${phoneVerified}">
+    <p><strong>Phone Number:</strong> <span th:text="${phoneNumber}"></span></p>
+    <p style="color: green;">✅ Phone verified</p>
+</div>
+<!--<a th:href="@{/change-phone}">-->
+<!--    <button>Change phone number</button>-->
+<!--</a>-->
+
+<!--<div th:if="${phoneVerified} == false">-->
+<!--    <p>You can add your phone number</p>-->
+<!--    <a th:href="@{/add-phone}">-->
+<!--        <button>Add Phone Number</button>-->
+<!--    </a>-->
+<!--</div>-->
+
+<h1>⚙️ Phone number verification and update features are currently under maintenance. Please check back later.</h1>
+
+</body>
+</html>

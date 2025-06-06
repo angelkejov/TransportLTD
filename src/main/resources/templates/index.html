@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+
+    <style>
+        body { font-family: Arial; margin: 0; padding: 0; }
+        nav {
+          background: #222; color: white; padding: 10px;
+        }
+        nav a {
+          color: white; text-decoration: none; margin-right: 10px;
+        }
+        nav a:hover {
+          text-decoration: underline;
+        }
+        .container { padding: 20px; }
+    </style>
+</head>
+<body>
+<nav>
+    <div th:if="${loggedIn}">
+        <span th:text="'Logged in as: ' + ${username}"></span>
+        <form th:action="@{/logout}" method="post">
+            <button type="submit">Logout</button>
+        </form>
+        <a href="/orders/new">Order</a>
+        <a href="/orders/my">My Orders</a>
+    </div>
+
+    <div th:if="${loggedIn} == false">
+        <a href="/login">Login</a>
+        <a href="/signup">Sign Up</a>
+    </div>
+
+    <div th:if="${loggedIn}" style="position: absolute; top: 10px; right: 10px;">
+        <form th:action="@{/profile}" method="get">
+            <button type="submit" style="background: none; border: none; font-size: 20px; cursor: pointer;">
+                👤
+            </button>
+        </form>
+    </div>
+</nav>
+<div th:if="${loggedIn}">
+    <h1>Welcome, <span th:text="${username}">User</span>!</h1>
+</div>
+</body>
+</html>

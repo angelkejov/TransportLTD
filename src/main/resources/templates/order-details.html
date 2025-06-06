@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Order Details</title>
+</head>
+<body>
+<h1>Order Details</h1>
+
+<p><strong>Order ID:</strong> <span th:text="${order.id}"></span></p>
+<p><strong>Pickup Location:</strong> <span th:text="${order.pickupLocation}"></span></p>
+<p><strong>Dropoff Location:</strong> <span th:text="${order.dropoffLocation}"></span></p>
+<p><strong>Pickup Time:</strong> <span th:text="${#temporals.format(order.pickupTime, 'yyyy-MM-dd HH:mm')}"></span></p>
+<p><strong>Special Request:</strong> <span th:text="${order.specialRequest}"></span></p>
+<p><strong>Status:</strong> <span th:text="${order.status}"></span></p>
+<p><strong>Created At:</strong> <span th:text="${#temporals.format(order.createdAt, 'yyyy-MM-dd HH:mm')}"></span></p>
+
+<a th:href="@{/orders/my}">Back to My Orders</a>
+</body>
+</html>

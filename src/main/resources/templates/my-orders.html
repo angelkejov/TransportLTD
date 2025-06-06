@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>My Orders</title>
+</head>
+<body>
+<h1>My Transport Orders</h1>
+
+<div th:if="${orders.isEmpty()}">
+    <p>You have no orders yet.</p>
+</div>
+
+<div th:unless="${orders.isEmpty()}">
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Pickup</th>
+            <th>Dropoff</th>
+            <th>Date & Time</th>
+            <th>Status</th>
+            <th>Details</th>
+        </tr>
+        <tr th:each="order : ${orders}">
+            <td th:text="${order.id}"></td>
+            <td th:text="${order.pickupLocation}"></td>
+            <td th:text="${order.dropoffLocation}"></td>
+            <td th:text="${#temporals.format(order.pickupTime, 'yyyy-MM-dd HH:mm')}"></td>
+            <td th:text="${order.status}"></td>
+            <td><a th:href="@{'/orders/' + ${order.id}}">View</a></td>
+        </tr>
+    </table>
+</div>
+
+<a th:href="@{/orders/new}">Place New Order</a>
+<a th:href="@{/}">To the main page</a>
+</body>
+</html>
