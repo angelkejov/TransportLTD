@@ -16,7 +16,7 @@ Includes JWT authentication, email verification, phone number verification (2FA)
 - ✅ Reset Password feature
 - 🔜 Change phone number and Add phone number are under maintenance.
 - ✅ Edit Username & Email
-
+- ✅ Ordering flow and some other shit
 ---
 
 ## 🛠️ Tech Stack
