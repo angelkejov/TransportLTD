@@ -2,18 +2,80 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Order Details</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 30px;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #444;
+            margin-bottom: 40px;
+        }
+
+        .order-details {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .order-details p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        strong {
+            color: #555;
+        }
+
+        .back-button {
+            display: block;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .back-button a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-button a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+
 </head>
 <body>
 <h1>Order Details</h1>
 
-<p><strong>Order ID:</strong> <span th:text="${order.id}"></span></p>
-<p><strong>Pickup Location:</strong> <span th:text="${order.pickupLocation}"></span></p>
-<p><strong>Dropoff Location:</strong> <span th:text="${order.dropoffLocation}"></span></p>
-<p><strong>Pickup Time:</strong> <span th:text="${#temporals.format(order.pickupTime, 'yyyy-MM-dd HH:mm')}"></span></p>
-<p><strong>Special Request:</strong> <span th:text="${order.specialRequest}"></span></p>
-<p><strong>Status:</strong> <span th:text="${order.status}"></span></p>
-<p><strong>Created At:</strong> <span th:text="${#temporals.format(order.createdAt, 'yyyy-MM-dd HH:mm')}"></span></p>
+<div class="order-details">
+    <p><strong>Order ID:</strong> <span th:text="${order.id}"></span></p>
+    <p><strong>Pickup Location:</strong> <span th:text="${order.pickupLocation}"></span></p>
+    <p><strong>Dropoff Location:</strong> <span th:text="${order.dropoffLocation}"></span></p>
+    <p><strong>Pickup Time:</strong> <span th:text="${#temporals.format(order.pickupTime, 'yyyy-MM-dd HH:mm')}"></span></p>
+    <p><strong>Special Request:</strong> <span th:text="${order.specialRequest}"></span></p>
+    <p><strong>Status:</strong> <span th:text="${order.status}"></span></p>
+    <p><strong>Created At:</strong> <span th:text="${#temporals.format(order.createdAt, 'yyyy-MM-dd HH:mm')}"></span></p>
+</div>
 
-<a th:href="@{/orders/my}">Back to My Orders</a>
+<div class="back-button">
+    <a th:href="@{/orders/my}">Back to My Orders</a>
+</div>
+
 </body>
 </html>

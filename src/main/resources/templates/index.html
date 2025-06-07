@@ -6,44 +6,116 @@
     <title>Welcome</title>
 
     <style>
-        body { font-family: Arial; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
         nav {
-          background: #222; color: white; padding: 10px;
+            background: #222;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
         }
+
         nav a {
-          color: white; text-decoration: none; margin-right: 10px;
+            color: white;
+            text-decoration: none;
+            margin-right: 15px;
+            font-weight: 500;
+            transition: color 0.3s ease;
         }
+
         nav a:hover {
-          text-decoration: underline;
+            color: #1e90ff;
         }
-        .container { padding: 20px; }
+
+        nav form {
+            display: inline;
+            margin: 0;
+        }
+
+        nav button {
+            background-color: #1e90ff;
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            margin-right: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        nav button:hover {
+            background-color: #0f6fc5;
+        }
+
+        .profile-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 22px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .container {
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-top: 50px;
+            color: #222;
+        }
+
+        span[th\\:text] {
+            color: #1e90ff;
+        }
     </style>
+
 </head>
 <body>
 <nav>
+    <div>
+        <div th:if="${loggedIn}">
+            <span th:text="'Logged in as: ' + ${username}" style="margin-right: 15px;"></span>
+            <form th:action="@{/logout}" method="post" style="display:inline;">
+                <button type="submit">Logout</button>
+            </form>
+            <a href="/orders/new">Order</a>
+            <a href="/orders/my">My Orders</a>
+        </div>
+
+        <div th:if="${loggedIn} == false">
+            <a href="/login">Login</a>
+            <a href="/signup">Sign Up</a>
+        </div>
+    </div>
+
     <div th:if="${loggedIn}">
-        <span th:text="'Logged in as: ' + ${username}"></span>
-        <form th:action="@{/logout}" method="post">
-            <button type="submit">Logout</button>
-        </form>
-        <a href="/orders/new">Order</a>
-        <a href="/orders/my">My Orders</a>
-    </div>
-
-    <div th:if="${loggedIn} == false">
-        <a href="/login">Login</a>
-        <a href="/signup">Sign Up</a>
-    </div>
-
-    <div th:if="${loggedIn}" style="position: absolute; top: 10px; right: 10px;">
         <form th:action="@{/profile}" method="get">
-            <button type="submit" style="background: none; border: none; font-size: 20px; cursor: pointer;">
-                👤
-            </button>
+            <button type="submit" class="profile-btn">👤</button>
         </form>
     </div>
 </nav>
-<div th:if="${loggedIn}">
+
+<div class="container" th:if="${loggedIn}">
     <h1>Welcome, <span th:text="${username}">User</span>!</h1>
 </div>
 </body>

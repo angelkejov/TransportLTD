@@ -2,18 +2,97 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Edit Username</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 40px 20px;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .cancel-btn {
+            display: block;
+            width: 100%;
+            max-width: 400px;
+            margin: 20px auto 0;
+            text-align: center;
+        }
+
+        .cancel-btn a {
+            text-decoration: none;
+        }
+
+        .cancel-btn button {
+            background-color: #6c757d;
+        }
+
+        .cancel-btn button:hover {
+            background-color: #5a6268;
+        }
+    </style>
+
 </head>
 <body>
-<h1>Edit Username</h1>
-
 <form th:action="@{/edit-username}" method="post">
-    <label for="newUsername">New Username:</label><br>
-    <input type="text" id="newUsername" name="newUsername" th:value="${currentUsername}" required /><br><br>
+    <label for="newUsername">New Username:</label>
+    <input type="text" id="newUsername" name="newUsername" th:value="${currentUsername}" required />
     <button type="submit">Save Changes</button>
 </form>
 
-<a th:href="@{/profile}">
-    <button>Cancel</button>
-</a>
+<div class="cancel-btn">
+    <a th:href="@{/profile}">
+        <button type="button">Cancel</button>
+    </a>
+</div>
+
 </body>
 </html>

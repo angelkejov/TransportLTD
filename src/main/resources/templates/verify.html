@@ -2,17 +2,96 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Enter Verification Code</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 40px 20px;
+            color: #333;
+        }
+
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        p {
+            text-align: center;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        strong {
+            color: #007bff;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .message {
+            text-align: center;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .message.success {
+            color: green;
+        }
+
+        .message.error {
+            color: red;
+        }
+    </style>
+
 </head>
 <body>
 <h2>Verify Your Account</h2>
+
 <p>A verification code was sent to: <strong th:text="${email}"></strong></p>
+
 <form th:action="@{/verify}" method="post">
     <input type="hidden" name="email" th:value="${email}" />
     <input type="text" name="verificationCode" placeholder="Enter code" required />
     <button type="submit">Verify</button>
 </form>
 
-<p th:if="${message}" style="color: green;" th:text="${message}"></p>
-<p th:if="${error}" style="color: red;" th:text="${error}"></p>
+<p th:if="${message}" class="message success" th:text="${message}"></p>
+<p th:if="${error}" class="message error" th:text="${error}"></p>
 </body>
+
 </html>

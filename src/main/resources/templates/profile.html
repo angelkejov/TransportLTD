@@ -2,41 +2,127 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>User Profile</title>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 40px 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        p {
+            font-size: 18px;
+            margin: 15px 0;
+        }
+
+        strong {
+            color: #555;
+        }
+
+        .status-success {
+            color: green;
+            font-weight: bold;
+        }
+
+        .status-error {
+            color: red;
+            font-weight: bold;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        a {
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .maintenance-message {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 18px;
+            background-color: #fff3cd;
+            color: #856404;
+            padding: 15px;
+            border: 1px solid #ffeeba;
+            border-radius: 8px;
+        }
+    </style>
+
 </head>
 <body>
-<h1>User Profile</h1>
+<div class="container">
+    <h1>User Profile</h1>
 
-<a th:href="@{/}">
-    <button>🏠 Back to Main Page</button>
-</a>
+    <a th:href="@{/}">
+        <button>🏠 Back to Main Page</button>
+    </a>
 
-<p th:if="${error}" style="color: red;" th:text="${error}"></p>
+    <p th:if="${error}" class="status-error" th:text="${error}"></p>
 
-<p><strong>Username:</strong> <span th:text="${username}"></span></p>
-<a th:href="@{/edit-username}">
-    <button>Edit Username</button>
-</a>
-<p th:if="${message}" th:text="${message}" style="color: green;"></p>
-<p><strong>Email:</strong> <span th:text="${email}"></span></p>
-<a th:href="@{/edit-email}">
-    <button>Edit Email</button>
-</a>
-<div th:if="${phoneVerified}">
-    <p><strong>Phone Number:</strong> <span th:text="${phoneNumber}"></span></p>
-    <p style="color: green;">✅ Phone verified</p>
+    <p><strong>Username:</strong> <span th:text="${username}"></span></p>
+    <a th:href="@{/edit-username}">
+        <button>Edit Username</button>
+    </a>
+
+    <p th:if="${message}" class="status-success" th:text="${message}"></p>
+
+    <p><strong>Email:</strong> <span th:text="${email}"></span></p>
+    <a th:href="@{/edit-email}">
+        <button>Edit Email</button>
+    </a>
+
+    <div th:if="${phoneVerified}">
+        <p><strong>Phone Number:</strong> <span th:text="${phoneNumber}"></span></p>
+        <p class="status-success">✅ Phone verified</p>
+    </div>
+
+    <!--<a th:href="@{/change-phone}">
+        <button>Change phone number</button>
+    </a>-->
+
+    <!--<div th:if="${phoneVerified} == false">
+        <p>You can add your phone number</p>
+        <a th:href="@{/add-phone}">
+            <button>Add Phone Number</button>
+        </a>
+    </div>-->
+
+    <div class="maintenance-message">
+        ⚙️ Phone number verification and update features are currently under maintenance. Please check back later.
+    </div>
 </div>
-<!--<a th:href="@{/change-phone}">-->
-<!--    <button>Change phone number</button>-->
-<!--</a>-->
-
-<!--<div th:if="${phoneVerified} == false">-->
-<!--    <p>You can add your phone number</p>-->
-<!--    <a th:href="@{/add-phone}">-->
-<!--        <button>Add Phone Number</button>-->
-<!--    </a>-->
-<!--</div>-->
-
-<h1>⚙️ Phone number verification and update features are currently under maintenance. Please check back later.</h1>
-
 </body>
+
 </html>
