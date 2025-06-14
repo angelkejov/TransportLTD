@@ -4,6 +4,7 @@ import com.example.transportGrup.entity.User;
 import com.example.transportGrup.repository.UserRepository;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +23,7 @@ public class HomeController {
     public String showHome(Principal principal, Model model) {
         if (principal == null) {
             model.addAttribute("loggedIn", false);
-            return "index";
+            return "test1";
         }
 
         String username = principal.getName(); // This returns the username used at login

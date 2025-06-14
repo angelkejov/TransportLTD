@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>TransportGrup</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            height: 100%;
+            overflow-x: hidden; /* Removes scroll */
+            background-color: grey;
+        }
+
+        .hero {
+            background: url('/images/Photo5.jpg') no-repeat center center;
+            background-size: cover;
+            height: 100vh;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* dark overlay */
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #FFD700; /* Yellow */
+            text-transform: uppercase;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #eee;
+        }
+
+        .highlight {
+            color: #FFA500; /* orange */
+            font-weight: bold;
+        }
+
+        .cta {
+            margin-top: 30px;
+            display: inline-block;
+            background-color: #FFD700;
+            color: black;
+            padding: 12px 24px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+        .split-section {
+            width: 100%;
+        }
+
+        .split {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        .split img {
+            width: 45%;
+            max-width: 500px;
+            border-radius: 10px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+        }
+
+        .split-text {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .split-text h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: #FFA500;
+        }
+
+        .split-text p {
+            font-size: 17px;
+            line-height: 1.6;
+            color: black;
+        }
+
+        .split-right {
+            flex-direction: row-reverse;
+        }
+
+        .split-wrapper {
+            background-color: #f4f4f4;
+            padding: 60px 0;
+        }
+
+
+        .site-footer {
+            background-color: #555;
+            color: #f1f1f1;
+            padding: 60px 20px 30px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-in-out;
+        }
+
+        .site-footer.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 40px;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 220px;
+        }
+
+        .footer-section h3,
+        .footer-section h4 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-section li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: #f1f1f1;
+            text-decoration: none;
+        }
+
+        .footer-section a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 14px;
+            color: #ccc;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="hero">
+    <div class="hero-content">
+        <h1>THE EXPERTS IN<br>TRUCK TRANSPORT</h1>
+        <p><span class="highlight">For any queries call at</span> (800) 941-1127</p>
+        <p>You've come to the right place!</p>
+        <a href="/signup" class="cta">Get Started</a>
+    </div>
+</div>
+
+<div class="split-section">
+
+    <div class="split-wrapper">
+        <div class="split split-left">
+            <img src="/images/Photo3.jpg" alt="Truck photo left">
+            <div class="split-text">
+                <h2>Reliable Nationwide Transport</h2>
+                <p>We provide fast, secure delivery services across the country with our modern fleet and trained drivers. Our mission is to make sure your cargo gets where it needs to go — on time, every time.</p>
+            </div>
+        </div>
+        <div class="split split-right">
+            <img src="/images/Photo6.jpg" alt="Truck photo right">
+            <div class="split-text">
+                <h2>Custom Logistics Solutions</h2>
+                <p>Whether you need single deliveries, regular shipments, or full logistics management — we customize solutions to fit your business goals and timeline.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer class="site-footer" id="footer">
+    <div class="footer-container">
+        <div class="footer-section">
+            <h3><img src="/images/Logo.png" alt="Logo" style="height: 100px; vertical-align: middle;"> TRANSPORTGRUP</h3>
+            <p>
+                TransportGrup provides reliable dump truck transportation services for a variety of construction and commercial needs.
+                We specialize in hauling bulk materials such as gravel, sand, soil, and debris — safely and efficiently across the region.
+                With a focus on professionalism and precision, we deliver dependable logistics for every project.
+            </p>
+        </div>
+        <div class="footer-section">
+            <h4>Menu</h4>
+            <ul>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Locations</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h4>Services</h4>
+            <ul>
+                <li>Heavy Duty Transport</li>
+                <li>Medium Duty Transport</li>
+                <li>Light Duty Transport</li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h4>Contact Us</h4>
+<!--            <p>📍 2765 W. Cypress Creek Rd<br>Fort Lauderdale, FL 33309</p>-->
+            <p>📞 0888808051 and 0878509163</p>
+            <p>✉️ transport.group25@abv.bg</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        © 2025 TransportGrup – All Rights Reserved
+    </div>
+
+    <script>
+        const footer = document.getElementById('footer');
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    footer.classList.add('show');
+                }
+            },
+            {
+                threshold: 0.3
+            }
+        );
+        observer.observe(footer);
+    </script>
+</footer>
+
+</body>
+</html>
