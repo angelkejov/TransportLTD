@@ -2,120 +2,351 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>My Orders</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+        html, body {
             margin: 0;
-            padding: 20px;
-            color: #333;
+            padding: 0;
+            height: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: url('/images/Photo4.jpg') no-repeat center center;
+            background-size: cover;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            z-index: -1;
+        }
+
+        nav {
+            width: 100%;
+            background: #222;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-left img.logo {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .nav-left span {
+            font-weight: 500;
+            font-size: 16px;
+        }
+
+        .nav-left form button {
+            background-color: #FFA500;
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            margin-left: 10px;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-left form button:hover {
+            background-color: #d98200;
+        }
+
+        .nav-center {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .nav-center a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-center a:hover {
+            color: #f79220;
+        }
+
+        .profile-btn {
+            font-size: 28px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: white;
+            transition: color 0.3s ease;
+        }
+
+        .profile-btn:hover {
+            color: orange;
+        }
+
+
+        .container {
+            margin-top: 120px;
+            padding: 30px;
         }
 
         h1 {
             text-align: center;
-            color: #444;
+            color: white;
+            margin-bottom: 30px;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            background-color: white;
-            margin-top: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+            background-color: #444;
+            color: white;
+            margin: 0 auto;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
         th, td {
             padding: 12px;
-            border: 1px solid #ddd;
             text-align: center;
+            border-bottom: 1px solid #fff;
         }
 
         th {
-            background-color: #007bff;
+            background-color: #FFA500;
             color: white;
         }
 
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-
         tr:hover {
-            background-color: #f1f1f1;
+            background-color: #555;
         }
 
-        a {
-            display: inline-block;
-            margin-top: 20px;
-            margin-right: 15px;
-            color: #007bff;
+        td a {
+            color: #FFA500;
             text-decoration: none;
             font-weight: bold;
         }
 
-        a:hover {
+        td a:hover {
             text-decoration: underline;
         }
 
-        p {
-            text-align: center;
-            font-size: 18px;
-            color: #666;
-        }
-
         .button-group {
-        text-align: center;
-        margin-top: 30px;
+            text-align: center;
+            margin-top: 40px;
         }
 
         .btn {
             display: inline-block;
             padding: 10px 20px;
             margin: 0 10px;
-            background-color: #007bff;
+            background-color: #FFA500;
             color: white;
             text-decoration: none;
-            border-radius: 5px;
+            border-radius: 6px;
             font-weight: bold;
             transition: background-color 0.3s ease;
         }
 
         .btn:hover {
-            background-color: #0056b3;
+            background-color: #d98200;
+        }
+
+        footer.site-footer {
+            background-color: #222;
+            color: #f1f1f1;
+            padding: 60px 20px 30px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-in-out;
+        }
+
+        footer.site-footer.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 40px;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 220px;
+        }
+
+        .footer-section h3,
+        .footer-section h4 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-section li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: #f1f1f1;
+            text-decoration: none;
+        }
+
+        .footer-section a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 14px;
+            color: #ccc;
         }
     </style>
 </head>
 <body>
-<h1>My Transport Orders</h1>
 
-<div th:if="${orders.isEmpty()}">
-    <p>You have no orders yet.</p>
+<nav>
+    <div class="nav-left">
+        <a th:href="@{/}">
+            <img class="logo" src="/images/Logo.png" alt="Logo">
+        </a>
+        <span th:if="${username}" th:text="'Logged in as: ' + ${username}"></span>
+        <form th:action="@{/logout}" method="post" th:if="${username}">
+            <button type="submit">Logout</button>
+        </form>
+    </div>
+
+    <div class="nav-center">
+        <a th:href="@{/}">Home</a>
+        <a th:href="@{/orders/new}">Order</a>
+        <a th:href="@{/orders/my}">My Orders</a>
+        <a th:href="@{/services}">Services</a>
+    </div>
+
+    <div>
+        <form th:action="@{/profile}" method="get">
+            <button type="submit" class="profile-btn"><i class="fas fa-user-circle"></i></button>
+        </form>
+    </div>
+</nav>
+
+<div class="container">
+    <h1>My Transport Orders</h1>
+
+    <div th:if="${orders.isEmpty()}">
+        <p style="color:white; text-align: center;">You have no orders yet.</p>
+    </div>
+
+    <div th:unless="${orders.isEmpty()}">
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Pickup</th>
+                <th>Dropoff</th>
+                <th>Date & Time</th>
+                <th>Status</th>
+                <th>Details</th>
+            </tr>
+            <tr th:each="order : ${orders}">
+                <td th:text="${order.id}"></td>
+                <td th:text="${order.pickupLocation}"></td>
+                <td th:text="${order.dropoffLocation}"></td>
+                <td th:text="${#temporals.format(order.pickupTime, 'yyyy-MM-dd HH:mm')}"></td>
+                <td th:text="${order.status}"></td>
+                <td><a th:href="@{'/orders/' + ${order.id}}">View</a></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="button-group">
+        <a class="btn" th:href="@{/orders/new}">Place New Order</a>
+    </div>
 </div>
 
-<div th:unless="${orders.isEmpty()}">
-    <table border="1">
-        <tr>
-            <th>ID</th>
-            <th>Pickup</th>
-            <th>Dropoff</th>
-            <th>Date & Time</th>
-            <th>Status</th>
-            <th>Details</th>
-        </tr>
-        <tr th:each="order : ${orders}">
-            <td th:text="${order.id}"></td>
-            <td th:text="${order.pickupLocation}"></td>
-            <td th:text="${order.dropoffLocation}"></td>
-            <td th:text="${#temporals.format(order.pickupTime, 'yyyy-MM-dd HH:mm')}"></td>
-            <td th:text="${order.status}"></td>
-            <td><a th:href="@{'/orders/' + ${order.id}}">View</a></td>
-        </tr>
-    </table>
-</div>
+<!-- Footer -->
+<footer class="site-footer" id="footer">
+    <div class="footer-container">
+        <div class="footer-section">
+            <h3><img src="/images/Logo.png" alt="Logo" style="height: 100px; vertical-align: middle;"> TRANSPORTGRUP</h3>
+            <p>
+                TransportGrup provides reliable dump truck transportation services for a variety of construction and commercial needs.
+                We specialize in hauling bulk materials such as gravel, sand, soil, and debris — safely and efficiently across the region.
+                With a focus on professionalism and precision, we deliver dependable logistics for every project.
+            </p>
+        </div>
+        <div class="footer-section">
+            <h4>Menu</h4>
+            <ul>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Locations</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h4>Services</h4>
+            <ul>
+                <li>Heavy Duty Transport</li>
+                <li>Medium Duty Transport</li>
+                <li>Light Duty Transport</li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h4>Contact Us</h4>
+            <p>📞 0888808051 and 0878509163</p>
+            <p>✉️ transport.group25@abv.bg</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        © 2025 TransportGrup – All Rights Reserved
+    </div>
+</footer>
 
+<script>
+    const footer = document.getElementById('footer');
+    const observer = new IntersectionObserver(
+        ([entry]) => {
+            if (entry.isIntersecting) {
+                footer.classList.add('show');
+            }
+        },
+        { threshold: 0.3 }
+    );
+    observer.observe(footer);
+</script>
 
-<div class="button-group">
-    <a class="btn" th:href="@{/orders/new}">Place New Order</a>
-    <a class="btn" th:href="@{/}">To the Main Page</a>
-</div>
 </body>
 </html>

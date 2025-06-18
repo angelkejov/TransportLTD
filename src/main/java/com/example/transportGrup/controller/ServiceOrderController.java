@@ -55,8 +55,10 @@ public class ServiceOrderController {
             redirectAttributes.addFlashAttribute("error", "You must be logged in to place an order.");
             return "redirect:/login";
         }
+
         User user = userService.findByUsername(principal.getName());
         model.addAttribute("orders", orderService.getOrdersByUser(user));
+        model.addAttribute("username", user.getUsername());
         return "my-orders";
     }
 

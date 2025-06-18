@@ -4,12 +4,37 @@
 <head>
     <meta charset="UTF-8">
     <title>Welcome</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
+            background: url('/images/Photo4.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            z-index: -1;
+        }
+
+        .page-wrapper {
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            align-items: center;
         }
 
         nav {
@@ -20,83 +45,88 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
             box-sizing: border-box;
-            text-align: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-right: 15px;
+        .nav-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-left img.logo {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .nav-left span {
             font-weight: 500;
-            transition: color 0.3s ease;
+            font-size: 16px;
         }
 
-        nav a:hover {
-            color: #1e90ff;
-        }
-
-        nav form {
-            display: inline;
-            margin: 0;
-        }
-
-        nav button {
-            background-color: #1e90ff;
+        .nav-left form button {
+            background-color: #FFA500;
             color: white;
             border: none;
             padding: 8px 14px;
-            margin-right: 10px;
+            margin-left: 10px;
             border-radius: 5px;
+            font-weight: 600;
             cursor: pointer;
-            font-weight: 500;
             transition: background-color 0.3s ease;
         }
 
-        nav button:hover {
-            background-color: #0f6fc5;
+        .nav-left form button:hover {
+            background-color: #d98200;
+        }
+
+        .nav-center {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .nav-center a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-center a:hover {
+            color: #f79220;
         }
 
         .profile-btn {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            font-size: 22px;
+            font-size: 28px;
             background: none;
             border: none;
             cursor: pointer;
             color: white;
-            transition: transform 0.3s ease;
+            transition: color 0.3s ease;
         }
 
         .profile-btn:hover {
-            transform: scale(1.1);
+            color: orange;
         }
 
-        .container {
-            padding: 40px 20px;
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 32px;
-            margin-top: 50px;
-            color: #222;
-        }
-
-        span[th\\:text] {
-            color: #1e90ff;
-        }
 
         .hero-section {
             background-color: #fff;
             padding: 60px 20px;
-            margin: 60px auto;
+            margin-top: 120px;
             text-align: center;
             max-width: 600px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
+            align-self: center;
         }
+
         .hero-section h1 {
             font-size: 36px;
             color: #222;
@@ -122,55 +152,155 @@
             font-size: 16px;
         }
 
-        .nav-center {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
+        footer.site-footer {
+            background-color: #222;
+            color: #f1f1f1;
+            padding: 60px 20px 30px;
+            transition: all 0.8s ease-in-out;
         }
 
-        .nav-center a {
-            color: white;
+        .site-footer.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 40px;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 220px;
+        }
+
+        .footer-section h3,
+        .footer-section h4 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-section li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: #f1f1f1;
             text-decoration: none;
-            margin: 0 10px;
-            font-weight: 500;
         }
 
-        .nav-center a:hover {
-            color: #1e90ff;
+        .footer-section a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 14px;
+            color: #ccc;
         }
 
     </style>
-
 </head>
+
 <body>
-<nav>
-    <div>
-        <div th:if="${loggedIn}">
-            <span th:text="'Logged in as: ' + ${username}" style="margin-right: 15px;"></span>
-            <form th:action="@{/logout}" method="post" style="display:inline;">
+<div class="page-wrapper">
+    <nav>
+        <div class="nav-left">
+            <a th:href="@{/}">
+                <img class="logo" src="/images/Logo.png" alt="Logo">
+            </a>
+            <span th:if="${username}" th:text="'Logged in as: ' + ${username}"></span>
+            <form th:action="@{/logout}" method="post" th:if="${username}">
                 <button type="submit">Logout</button>
             </form>
-            <a href="/orders/new">Order</a>
-            <a href="/orders/my">My Orders</a>
         </div>
-    </div>
 
-    <div th:if="${loggedIn}">
-        <form th:action="@{/profile}" method="get">
-            <button type="submit" class="profile-btn">👤</button>
-        </form>
-    </div>
-</nav>
+        <div class="nav-center">
+            <a th:href="@{/}">Home</a>
+            <a th:href="@{/orders/new}">Order</a>
+            <a th:href="@{/orders/my}">My Orders</a>
+            <a th:href="@{/services}">Services</a>
+        </div>
 
-<div class="hero-section" th:if="${loggedIn} == false">
-    <h1>Welcome to TransportGrup</h1>
-    <p>We provide reliable and efficient transportation solutions tailored to your needs.</p>
-    <p>Whether it's logistics, fleet services, or express delivery — we've got you covered.</p>
-    <a href="/signup">
-        <button>Get Started</button>
-    </a>
+        <div>
+            <form th:action="@{/profile}" method="get">
+                <button type="submit" class="profile-btn"><i class="fas fa-user-circle"></i></button>
+            </form>
+        </div>
+    </nav>
+
+    <div class="hero-section" th:if="${loggedIn} == false">
+        <h1>Welcome to TransportGrup</h1>
+        <p>We provide reliable and efficient transportation solutions tailored to your needs.</p>
+        <p>Whether it's logistics, fleet services, or express delivery — we've got you covered.</p>
+        <a href="/signup">
+            <button>Get Started</button>
+        </a>
+    </div>
 </div>
 
+<footer class="site-footer" id="footer">
+    <div class="footer-container">
+        <div class="footer-section">
+            <h3><img src="/images/Logo.png" alt="Logo" style="height: 100px; vertical-align: middle;"> TRANSPORTGRUP</h3>
+            <p>
+                TransportGrup provides reliable dump truck transportation services for a variety of construction and commercial needs.
+                We specialize in hauling bulk materials such as gravel, sand, soil, and debris — safely and efficiently across the region.
+                With a focus on professionalism and precision, we deliver dependable logistics for every project.
+            </p>
+        </div>
+        <div class="footer-section">
+            <h4>Menu</h4>
+            <ul>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Locations</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h4>Services</h4>
+            <ul>
+                <li>Heavy Duty Transport</li>
+                <li>Medium Duty Transport</li>
+                <li>Light Duty Transport</li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h4>Contact Us</h4>
+            <p>📞 0888808051 and 0878509163</p>
+            <p>✉️ transport.group25@abv.bg</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        © 2025 TransportGrup – All Rights Reserved
+    </div>
 
+    <script>
+        const footer = document.getElementById('footer');
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    footer.classList.add('show');
+                }
+            },
+            {
+                threshold: 0.3
+            }
+        );
+        observer.observe(footer);
+    </script>
+</footer>
 </body>
 </html>

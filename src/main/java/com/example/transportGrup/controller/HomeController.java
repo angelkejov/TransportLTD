@@ -23,7 +23,7 @@ public class HomeController {
     public String showHome(Principal principal, Model model) {
         if (principal == null) {
             model.addAttribute("loggedIn", false);
-            return "test1";
+            return "guest-page";
         }
 
         String username = principal.getName(); // This returns the username used at login
@@ -36,15 +36,16 @@ public class HomeController {
 
     @GetMapping("/signup")
     public String showSignup(Model model) {
-        model.addAttribute("signup", true);
+        model.addAttribute("mode", "signup");
         return "auth";
     }
 
     @GetMapping("/login")
     public String showLogin(Model model) {
-        model.addAttribute("login", true);
+        model.addAttribute("mode", "login");
         return "auth";
     }
+
 
     @GetMapping("/verify")
     public String showVerifyPage(@RequestParam String email, Model model,

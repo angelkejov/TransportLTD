@@ -92,7 +92,8 @@ public class FormAuthController {
             return "redirect:/orders/my";
         } catch (Exception e) {
             model.addAttribute("login", true);
-            model.addAttribute("error", "Invalid username or password.");
+            model.addAttribute("mode", "login");
+            model.addAttribute("error", "Invalid email or password.");
             return "auth";
         }
     }
@@ -149,4 +150,5 @@ public class FormAuthController {
             return "redirect:/verify-phone-form";
         }
     }
+
 }
