@@ -1,99 +1,136 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Order Transport Service</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 40px 20px;
-            color: #333;
-        }
-
-        h1 {
-            text-align: center;
-            color: #2c3e50;
-            margin-bottom: 40px;
-        }
-
-        form {
-            max-width: 600px;
-            margin: 0 auto;
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: #555;
-        }
-
-        input[type="text"],
-        input[type="datetime-local"],
-        textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-            box-sizing: border-box;
-        }
-
-        textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        button {
-            width: 100%;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 12px;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-
-        a {
-            display: block;
-            text-align: center;
-            margin-top: 30px;
-            font-weight: bold;
-            color: #007bff;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
-
+<head th:replace="fragments/navbar :: header">
 </head>
+
+<style>
+    body {
+      background: url('/images/Photo4.jpg') no-repeat center center fixed;
+      background-size: cover;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: -1;
+    }
+
+    .form-container {
+      margin-top: 140px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .form-container h1 {
+      color: white;
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 32px;
+      font-weight: bold;
+    }
+
+    .form-container form {
+      max-width: 600px;
+      width: 90%;
+      background: #2c2c2c;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      border: 1px solid #444;
+    }
+
+    .form-container form label {
+      font-weight: bold;
+      color: #f0f0f0;
+      margin-bottom: 5px;
+    }
+
+    .form-container form input[type="text"],
+    .form-container form input[type="datetime-local"],
+    .form-container form textarea {
+      width: 100%;
+      padding: 10px 12px;
+      font-size: 16px;
+      border: 1px solid #666;
+      border-radius: 5px;
+      box-sizing: border-box;
+      font-family: inherit;
+      background-color: #1e1e1e;
+      color: #fff;
+      transition: border-color 0.2s ease-in-out;
+    }
+
+    .form-container form input:focus,
+    .form-container form textarea:focus {
+      outline: none;
+      border-color: #ffa500;
+      box-shadow: 0 0 0 2px rgba(255, 165, 0, 0.2);
+    }
+
+    .form-container form textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .form-container form button[type="submit"] {
+      background-color: #FFA500;
+      color: white;
+      border: none;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      box-shadow: none;
+      outline: none;
+    }
+
+    .form-container form button[type="submit"]:hover {
+      background-color: #d98200;
+    }
+
+    .form-container a {
+      margin-top: 15px;
+      text-align: center;
+      color: #FFA500;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .form-container a:hover {
+      text-decoration: underline;
+    }
+
+
+</style>
+
 <body>
-<h1>Order a Transport Service</h1>
+
+<nav th:replace="fragments/navbar :: navbar"></nav>
 
 <div class="form-container">
+    <h1>Order a Transport Service</h1>
+
     <form th:action="@{/orders/submit}" th:object="${orderRequest}" method="post">
         <label>Pickup Location:</label>
-        <input type="text" th:field="*{pickupLocation}" required/>
+        <input type="text" th:field="*{pickupLocation}" required />
 
         <label>Dropoff Location:</label>
-        <input type="text" th:field="*{dropoffLocation}" required/>
+        <input type="text" th:field="*{dropoffLocation}" required />
 
         <label>Pickup Date and Time:</label>
-        <input type="datetime-local" th:field="*{pickupTime}" required/>
+        <input type="datetime-local" th:field="*{pickupTime}" required />
 
         <label>Special Request:</label>
         <textarea th:field="*{specialRequest}"></textarea>
@@ -104,5 +141,4 @@
     <a th:href="@{/orders/my}">View My Orders</a>
 </div>
 </body>
-
 </html>

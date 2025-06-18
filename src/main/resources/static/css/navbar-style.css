@@ -1,0 +1,77 @@
+         nav {
+            width: 100%;
+            background: #222;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-left img.logo {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .nav-left span {
+            font-weight: 500;
+            font-size: 16px;
+        }
+
+        .nav-left form button {
+            background-color: #FFA500;
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            margin-left: 10px;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-left form button:hover {
+            background-color: #d98200;
+        }
+
+        .nav-center {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .nav-center a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-center a:hover {
+            color: #f79220;
+        }
+
+        .profile-btn {
+            font-size: 28px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: white;
+            transition: color 0.3s ease;
+        }
+
+        .profile-btn:hover {
+            color: orange;
+        }

@@ -24,8 +24,13 @@ public class ServiceOrderController {
     private final UserService userService;
 
     @GetMapping("/new")
-    public String showOrderForm(Model model) {
+    public String showOrderForm(Model model, Principal principal) {
         model.addAttribute("orderRequest", new ServiceOrderRequest());
+
+        if (principal != null) {
+            model.addAttribute("username", principal.getName());
+        }
+
         return "order-form";
     }
 
