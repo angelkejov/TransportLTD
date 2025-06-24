@@ -3,107 +3,119 @@
 <head>
     <title>Edit Email</title>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f4f4;
+        html, body {
             margin: 0;
-            padding: 40px 20px;
-            color: #333;
+            padding: 0;
+            height: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        h1 {
+        body {
+            background: url('/images/bg-truck.jpg') no-repeat center center fixed;
+            background-size: cover;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 0;
+        }
+
+        .form-container {
+            position: relative;
+            z-index: 1;
+            background-color: rgba(20, 20, 20, 0.95);
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+            width: 100%;
+            max-width: 420px;
+            margin: 80px auto;
             text-align: center;
-            color: #2c3e50;
-            margin-bottom: 30px;
+            color: #fff;
         }
 
-        form {
-            max-width: 400px;
-            margin: 0 auto;
-            background: #ffffff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        h2 {
+            margin-bottom: 25px;
+            font-size: 24px;
+            color: #ffffff;
         }
 
         label {
             display: block;
             margin-bottom: 10px;
             font-weight: bold;
-            color: #555;
+            font-size: 15px;
+            color: #ddd;
+            text-align: left;
         }
 
-        input[type="text"] {
+        input[type="email"] {
             width: 100%;
             padding: 10px;
             font-size: 16px;
             margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            border: none;
+            border-radius: 6px;
+            background-color: #333;
+            color: #fff;
             box-sizing: border-box;
         }
 
-        button {
+        .btn {
             width: 100%;
-            background-color: #007bff;
-            color: white;
+            background-color: #ffa500;
+            color: #000;
             border: none;
             padding: 12px;
-            font-size: 16px;
-            border-radius: 5px;
+            font-size: 15px;
+            border-radius: 6px;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            font-weight: bold;
+            margin-bottom: 15px;
         }
 
-        button:hover {
-            background-color: #0056b3;
+        .btn:hover {
+            background-color: #e69500;
         }
 
         .cancel-btn {
-            display: block;
             width: 100%;
-            max-width: 400px;
-            margin: 20px auto 0;
-            text-align: center;
-        }
-
-        .cancel-btn a {
-            text-decoration: none;
-        }
-
-        .cancel-btn button {
-            background-color: #6c757d;
-        }
-
-        .cancel-btn button:hover {
-            background-color: #5a6268;
-        }
-
-        .message {
-            text-align: center;
+            background-color: #555;
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 15px;
+            border-radius: 6px;
+            cursor: pointer;
             font-weight: bold;
-            color: green;
-            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .cancel-btn:hover {
+            background-color: #444;
         }
     </style>
-
 </head>
 <body>
-<h1>Edit Email</h1>
 
-<form th:action="@{/edit-email}" method="post">
-    <label for="newEmail">New Email:</label>
-    <input type="text" id="newEmail" name="newEmail" th:value="${currentEmail}" required />
-    <button type="submit">Save Changes</button>
-</form>
+<div class="form-container">
+    <h2>Edit Email</h2>
+    <form th:action="@{/edit-email}" method="post">
+        <label for="email">New Email:</label>
+        <input type="email" id="email" name="email" th:value="${email}" required>
 
-<p th:if="${message}" class="message" th:text="${message}"></p>
+        <button type="submit" class="btn">📧 Save Changes</button>
+    </form>
 
-<div class="cancel-btn">
-    <a th:href="@{/profile}">
-        <button type="button">Cancel</button>
-    </a>
+    <form th:action="@{/profile}" method="get">
+        <button type="submit" class="cancel-btn">Cancel</button>
+    </form>
 </div>
-</body>
 
+</body>
 </html>

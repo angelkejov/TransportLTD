@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>My Orders</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
+<head th:replace="fragments/navbar :: header">
+</head>
     <style>
         html, body {
             margin: 0;
@@ -26,71 +24,6 @@
             height: 100%;
             background-color: rgba(0, 0, 0, 0.4);
             z-index: -1;
-        }
-
-        nav {
-            width: 100%;
-            background: #222;
-            color: white;
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 100;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        .nav-left {
-            display: flex;
-            align-items: center;
-        }
-
-        .nav-left img.logo {
-            height: 40px;
-            margin-right: 10px;
-        }
-
-        .nav-left span {
-            font-weight: 500;
-            font-size: 16px;
-        }
-
-        .nav-left form button {
-            background-color: #FFA500;
-            color: white;
-            border: none;
-            padding: 8px 14px;
-            margin-left: 10px;
-            border-radius: 5px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .nav-left form button:hover {
-            background-color: #d98200;
-        }
-
-        .nav-center {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-        }
-
-        .nav-center a {
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 18px;
-            transition: color 0.3s ease;
-        }
-
-        .nav-center a:hover {
-            color: #f79220;
         }
 
         .profile-btn {
@@ -239,30 +172,7 @@
 </head>
 <body>
 
-<nav>
-    <div class="nav-left">
-        <a th:href="@{/}">
-            <img class="logo" src="/images/Logo.png" alt="Logo">
-        </a>
-        <span th:if="${username}" th:text="'Logged in as: ' + ${username}"></span>
-        <form th:action="@{/logout}" method="post" th:if="${username}">
-            <button type="submit">Logout</button>
-        </form>
-    </div>
-
-    <div class="nav-center">
-        <a th:href="@{/}">Home</a>
-        <a th:href="@{/orders/new}">Order</a>
-        <a th:href="@{/orders/my}">My Orders</a>
-        <a th:href="@{/services}">Services</a>
-    </div>
-
-    <div>
-        <form th:action="@{/profile}" method="get">
-            <button type="submit" class="profile-btn"><i class="fas fa-user-circle"></i></button>
-        </form>
-    </div>
-</nav>
+<nav th:replace="fragments/navbar :: navbar"></nav>
 
 <div class="container">
     <h1>My Transport Orders</h1>
