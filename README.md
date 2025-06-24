@@ -1,26 +1,68 @@
-# 🚖 TransportEase – Transport Service Ordering App
+# 🚚 TransportGrup – Truck Transport Web App
 
-**TransportEase** is a web-based application for ordering transport services, built with **Spring Boot**, **Thymeleaf**, and **MySQL**. It allows users to register, verify their email, log in, place transport orders, view their order history, and manage their profile.
-
----
-
-## ✨ Features
-
-- ✅ User registration and email verification
-- 🔐 Secure login with Spring Security
-- 🔁 Password reset via email verification code
-- 🚗 Place new transport orders
-- 📋 View all past orders
-- 👤 Edit user profile (username/email)
-- 📱 (Upcoming) Phone number verification and management
-- 🌐 Thymeleaf-powered frontend with responsive styling
+**TransportGrup** is a full-featured Spring Boot web application for managing transport orders and services. Users can register, log in, place service requests, and track their orders with ease.
 
 ---
 
-## 🛠️ Tech Stack
+## 🌟 Website Preview
 
-- **Backend**: Java, Spring Boot, Spring Security, Spring MVC
-- **Frontend**: HTML, CSS, Thymeleaf
-- **Database**: MySQL
-- **Mail Service**: JavaMailSender
-- **Build Tool**: Maven
+### 🏠 Homepage – Hero Section
+
+![Homepage Preview](src/main/resources/static/images/previewImages/guest_page.png)
+
+### 📋 User Dashboard – Transport Orders
+
+![Orders Preview](src/main/resources/static/images/previewImages/logged_in_page.png)
+
+---
+
+## 🔧 Features
+
+- ✅ User registration, login, and email verification
+- ✅ JWT-based authentication
+- ✅ Edit profile and change username
+- ✅ Place and manage transport orders
+- ✅ Track order status (Pending/Active)
+- ✅ Responsive design with modern UI
+- ✅ Admin-friendly database structure
+
+---
+
+## 🛠 Tech Stack
+
+| Backend         | Frontend        | Database      | Security      |
+|----------------|-----------------|---------------|---------------|
+| Spring Boot     | HTML, CSS       | MySQL         | Spring Security |
+| Spring Web MVC  | Thymeleaf       | JDBC/Raw SQL  | JWT, BCrypt    |
+
+---
+
+## 🧾 Sample Services Offered
+
+- **Heavy Duty Transport** – Large volume deliveries across the region
+- **Medium Duty Transport** – Ideal for mid-size loads
+- **Light Duty Transport** – For local runs and small-scale hauling
+
+---
+
+## 📞 Contact
+
+For any queries or transport scheduling, reach out to us:
+
+- 📞 **0888808051** or **0878509163**
+- 📧 [transport.group25@abv.bg](mailto:transport.group25@abv.bg)
+
+---
+
+## 🗺️ About
+
+> TransportGrup provides reliable dump truck transportation services for a variety of construction and commercial needs. We specialize in hauling bulk materials such as gravel, sand, soil, and debris — safely and efficiently across the region. With a focus on professionalism and precision, we deliver dependable results.
+
+---
+
+## 🚀 Run Locally
+
+```bash
+git clone https://github.com/your-username/transportgrup.git
+cd transportgrup
+./mvnw spring-boot:run
